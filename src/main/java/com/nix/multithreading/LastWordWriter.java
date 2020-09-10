@@ -35,8 +35,6 @@ class LastWordWriter implements FileWriter {
     }
 
     public void shutdown() {
-        checkConfiguration();
-
         executor.shutdown();
         try {
             executorFuture.get();
@@ -50,13 +48,5 @@ class LastWordWriter implements FileWriter {
             e.printStackTrace();
         }
 
-    }
-
-    private void checkConfiguration() {
-        if (executor == null)
-            throw new NullPointerException("The executor was not configured");
-
-        if (scheduler == null)
-            throw new NullPointerException("Scheduler was not configured");
     }
 }
